@@ -316,12 +316,12 @@ pub mod pallet {
 		pub fn remark(origin: OriginFor<T>, hash: [u8; 128], depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
 			T::BridgeOrigin::ensure_origin(origin)?;
 			
-			ensure!(!AssetsStored::<T>::contains_key(hash), <Error<T>>::AssetAlreadyExists);
+			///ensure!(!AssetsStored::<T>::contains_key(hash), <Error<T>>::AssetAlreadyExists);
 			//store the hash value
-			<AssetsStored<T>>::insert(&hash, true);
+			////<AssetsStored<T>>::insert(&hash, true);
 
 
-			Self::deposit_event(Event::Remark(hash));
+			//Self::deposit_event(Event::Remark(hash));
 			Ok(())
 		}
 
