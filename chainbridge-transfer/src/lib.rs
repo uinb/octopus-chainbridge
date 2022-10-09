@@ -320,6 +320,7 @@ pub mod pallet {
 			//store the hash value
 			<AssetsStored<T>>::insert(&hash, true);
 
+
 			Self::deposit_event(Event::Remark(hash));
 			Ok(())
 		}
