@@ -96,7 +96,7 @@ pub mod pallet {
 
 		type Erc721Id: Get<ResourceId>;
 
-		type GenericMessageAgent: Agent<Self::AccountId>;
+	//	type GenericMessageAgent: Agent<Self::AccountId>;
 	}
 
 	#[pallet::storage]
