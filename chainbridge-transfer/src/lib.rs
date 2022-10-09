@@ -50,6 +50,7 @@ pub mod pallet {
 		fungibles::Mutate,
 		tokens::{AssetId, Balance as AssetBalance},
 	};
+	use pallet_chainbridge_support::traits:: Agent;
 
 	#[pallet::pallet]
 	#[pallet::generate_store(pub (super) trait Store)]
@@ -94,6 +95,8 @@ pub mod pallet {
 		type NativeTokenId: Get<ResourceId>;
 
 		type Erc721Id: Get<ResourceId>;
+
+		type GenericMessageAgent: Agent<Self::AccountId>;
 	}
 
 	#[pallet::storage]

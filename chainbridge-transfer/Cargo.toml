@@ -26,7 +26,8 @@ sp-arithmetic = { git = "https://github.com/paritytech/substrate.git", branch = 
 sp-core = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18", default-features = false }
 
 pallet-chainbridge = { path = "../chainbridge", default-features = false }
-pallet-chainbridge-erc721 = {path = "./chainbridge-erc721", default-features = false}
+pallet-chainbridge-erc721 = {path = "./chainbridge-erc721", default-features = false }
+pallet-chainbridge-support = { path = "../chainbridge-support", default-features = false }
 
 [dev-dependencies]
 sp-keyring = { git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.18" }
@@ -48,5 +49,6 @@ std = [
 	"sp-std/std",
 	"pallet-chainbridge/std",
 	"pallet-chainbridge-erc721/std",
+	"pallet-chainbridge-support/std"
 ]
 try-runtime = ["frame-support/try-runtime"]

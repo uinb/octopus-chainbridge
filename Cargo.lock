@@ -1318,6 +1318,7 @@ dependencies = [
  "pallet-balances",
  "pallet-chainbridge",
  "pallet-chainbridge-erc721",
+ "pallet-chainbridge-support",
  "parity-scale-codec",
  "scale-info",
  "sp-arithmetic",
