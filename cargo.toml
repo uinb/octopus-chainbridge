@@ -3,4 +3,5 @@ members = [
     "chainbridge",
     "chainbridge-transfer",
     "chainbridge-transfer/chainbridge-erc721",
+    "chainbridge-support"
 ]
