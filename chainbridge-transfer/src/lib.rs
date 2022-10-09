@@ -313,7 +313,7 @@ pub mod pallet {
 
 		/// This can be called by the bridge to demonstrate an arbitrary call from a proposal.
 		#[pallet::weight(195_000_0000)]
-		pub fn remark(origin: OriginFor<T>, hash: T::Hash, depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
+		pub fn remark(origin: OriginFor<T>, hash: [u8; 128], depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
 			T::BridgeOrigin::ensure_origin(origin)?;
 			
 			ensure!(!AssetsStored::<T>::contains_key(hash), <Error<T>>::AssetAlreadyExists);
