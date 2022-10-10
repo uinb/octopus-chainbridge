@@ -1,10 +1,12 @@
 use sp_std::prelude::*;
 use frame_support::dispatch::DispatchError;
 use frame_support::dispatch::DispatchResult;
+use sp_runtime::traits::Dispatchable;
+use codec::EncodeLike;
 
 pub trait Agent<AccountId> {
 	type Origin;
-	type Message;
+	type Message: EncodeLike + Dispatchable;
 
 	/// bind the origin to an appchain account without private key
 	/// function RegisterInterchainAccount(counterpartyPortId: Identifier, connectionID: Identifier) returns (nil)

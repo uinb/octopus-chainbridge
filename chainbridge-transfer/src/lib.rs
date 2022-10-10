@@ -32,7 +32,6 @@ use pallet_chainbridge as bridge;
 use scale_info::prelude::string::String;
 use sp_core::U256;
 use sp_std::{convert::From, prelude::*};
-
 use crate::traits::AssetIdResourceIdProvider;
 pub use pallet::*;
 
@@ -106,6 +105,9 @@ pub mod pallet {
 
 		type GenericMessageAgent: Agent<Self::AccountId>;
 	}
+
+//	type Depositer<T> = T::GenericMessageAgent::Origin;
+//	type Message<T> = T::GenericMessageAgent<T>::Message;
 
 	#[pallet::storage]
 	#[pallet::getter(fn resource_id_by_asset_id)]
@@ -321,16 +323,16 @@ pub mod pallet {
 
 		/// This can be called by the bridge to demonstrate an arbitrary call from a proposal.
 		#[pallet::weight(195_000_0000)]
-		pub fn remark(origin: OriginFor<T>, hash: [u8; 128], depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
+		pub fn remark(origin: OriginFor<T>, message: Vec<u8>, depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
 			T::BridgeOrigin::ensure_origin(origin)?;
+	/*		T::Agent::execute(b"ETH", depoister)
+				where T::Agent::Origin : From<()>*/
 
-			//let c = T::Call::decode
+			//let c = <T as pallet::Config>::Call::decode(&mut hash);
 			
 			///ensure!(!AssetsStored::<T>::contains_key(hash), <Error<T>>::AssetAlreadyExists);
 			//store the hash value
 			////<AssetsStored<T>>::insert(&hash, true);
-
-
 			//Self::deposit_event(Event::Remark(hash));
 			Ok(())
 		}
