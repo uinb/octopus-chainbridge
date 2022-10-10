@@ -13,12 +13,14 @@ mod traits;
 
 use frame_support::{
 	pallet_prelude::*,
+	weights:: GetDispatchInfo,
 	traits::{Currency, Get, StorageVersion},
 };
 use frame_system::pallet_prelude::*;
 use pallet_chainbridge_erc721 as erc721;
+use codec::EncodeLike;
 
-use sp_runtime::traits::SaturatedConversion;
+use sp_runtime::traits::{SaturatedConversion, Dispatchable};
 
 use frame_support::{
 	dispatch::DispatchResult,
