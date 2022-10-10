@@ -76,6 +76,12 @@ pub mod pallet {
 		/// The units in which we record balances.
 		type AssetBalance: AssetBalance + From<u128> + Into<u128>;
 
+		/// dispatchable call
+		type Call: Parameter
+		+ Dispatchable<Origin = Self::Origin>
+		+ EncodeLike
+		+ GetDispatchInfo;
+
 		/// Expose customizable associated type of asset transfer, lock and unlock
 		type Fungibles: Mutate<
 			Self::AccountId,
@@ -315,6 +321,8 @@ pub mod pallet {
 		#[pallet::weight(195_000_0000)]
 		pub fn remark(origin: OriginFor<T>, hash: [u8; 128], depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
 			T::BridgeOrigin::ensure_origin(origin)?;
+
+			//let c = T::Call::decode
 			
 			///ensure!(!AssetsStored::<T>::contains_key(hash), <Error<T>>::AssetAlreadyExists);
 			//store the hash value
