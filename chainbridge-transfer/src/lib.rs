@@ -103,11 +103,11 @@ pub mod pallet {
 
 		type Erc721Id: Get<ResourceId>;
 
-		type GenericMessageAgent: Agent<Self::AccountId>;
+		type Agent: Agent<Self::AccountId>;
 	}
 
 //	type Depositer<T> = T::GenericMessageAgent::Origin;
-//	type Message<T> = T::GenericMessageAgent<T>::Message;
+//	type Message<T> = T::Agent::Message;
 
 	#[pallet::storage]
 	#[pallet::getter(fn resource_id_by_asset_id)]
@@ -172,6 +172,7 @@ pub mod pallet {
 		InvalidTokenName,
 		OverTransferLimit,
 		AssetAlreadyExists,
+		InvalidCallMessage
 	}
 
 	#[pallet::hooks]
@@ -325,10 +326,13 @@ pub mod pallet {
 		#[pallet::weight(195_000_0000)]
 		pub fn remark(origin: OriginFor<T>, message: Vec<u8>, depoister: Depositer, _r_id: ResourceId) -> DispatchResult {
 			T::BridgeOrigin::ensure_origin(origin)?;
+
+			let c = <<T as pallet::Config>::Agent as Agent<T::AccountId>>::Message::decode(&mut &message[..]);
+
 	/*		T::Agent::execute(b"ETH", depoister)
 				where T::Agent::Origin : From<()>*/
 
-			//let c = <T as pallet::Config>::Call::decode(&mut hash);
+		//	let c = <T as pallet::Config>::Call::decode( message.as_mut_slice());
 			
 			///ensure!(!AssetsStored::<T>::contains_key(hash), <Error<T>>::AssetAlreadyExists);
 			//store the hash value
